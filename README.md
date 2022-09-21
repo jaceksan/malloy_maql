@@ -92,7 +92,9 @@ I prepared metrics and insights (and also dashboards) for the following Malloy's
 - [2_flights.malloy](malloy/2_flights.malloy)
 - [3_carrier_analysis.malloy](malloy/3_carrier_analysis.malloy)
 
-In the UI, change workspace to `FAA custom` and enjoy it. 
+In the UI, change workspace to `FAA custom` and enjoy it.
+![run_example.png](gooddata/run_example.png "Dashboards - switch workspace")
+
 Feel free to create new insights representing other Malloy's examples. 
 Feedback is welcome!
 
