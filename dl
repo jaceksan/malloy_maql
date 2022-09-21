@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./dcc logs --tail=10 -f

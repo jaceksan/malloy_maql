@@ -1,0 +1,186 @@
+attributes:
+  - description: Address1
+    id: address1
+    labels: []
+    sourceColumn: address1
+    tags:
+      - Aircraft
+    title: Address1
+  - description: Address2
+    id: address2
+    labels: []
+    sourceColumn: address2
+    tags:
+      - Aircraft
+    title: Address2
+  - description: Aircraft engine type id
+    id: aircraft.aircraft_engine_type_id
+    labels: []
+    sourceColumn: aircraft_engine_type_id
+    tags:
+      - Aircraft
+    title: Aircraft engine type id
+  - description: Aircraft type id
+    id: aircraft.aircraft_type_id
+    labels: []
+    sourceColumn: aircraft_type_id
+    tags:
+      - Aircraft
+    title: Aircraft type id
+  - description: City
+    id: aircraft.city
+    labels: []
+    sourceColumn: city
+    tags:
+      - Aircraft
+    title: City
+  - description: County
+    id: aircraft.county
+    labels: []
+    sourceColumn: county
+    tags:
+      - Aircraft
+    title: County
+  - description: Id
+    id: aircraft.id
+    labels: []
+    sourceColumn: id
+    tags:
+      - Aircraft
+    title: Id
+  - description: Name
+    id: aircraft.name
+    labels: []
+    sourceColumn: name
+    tags:
+      - Aircraft
+    title: Name
+  - description: State
+    id: aircraft.state
+    labels: []
+    sourceColumn: state
+    tags:
+      - Aircraft
+    title: State
+  - description: Aircraft engine code
+    id: aircraft_engine_code
+    labels: []
+    sourceColumn: aircraft_engine_code
+    tags:
+      - Aircraft
+    title: Aircraft engine code
+  - description: Aircraft serial
+    id: aircraft_serial
+    labels: []
+    sourceColumn: aircraft_serial
+    tags:
+      - Aircraft
+    title: Aircraft serial
+  - description: Certification
+    id: certification
+    labels: []
+    sourceColumn: certification
+    tags:
+      - Aircraft
+    title: Certification
+  - description: Country
+    id: country
+    labels: []
+    sourceColumn: country
+    tags:
+      - Aircraft
+    title: Country
+  - description: Fract owner
+    id: fract_owner
+    labels: []
+    sourceColumn: fract_owner
+    tags:
+      - Aircraft
+    title: Fract owner
+  - description: Mode s code
+    id: mode_s_code
+    labels: []
+    sourceColumn: mode_s_code
+    tags:
+      - Aircraft
+    title: Mode s code
+  - description: Region
+    id: region
+    labels: []
+    sourceColumn: region
+    tags:
+      - Aircraft
+    title: Region
+  - description: Registrant type id
+    id: registrant_type_id
+    labels: []
+    sourceColumn: registrant_type_id
+    tags:
+      - Aircraft
+    title: Registrant type id
+  - description: Status code
+    id: status_code
+    labels: []
+    sourceColumn: status_code
+    tags:
+      - Aircraft
+    title: Status code
+  - description: Tail num
+    id: tail_num
+    labels: []
+    sourceColumn: tail_num
+    tags:
+      - Aircraft
+    title: Tail num
+  - description: Year built
+    id: year_built
+    labels: []
+    sourceColumn: year_built
+    tags:
+      - Aircraft
+    title: Year built
+  - description: Zip
+    id: zip
+    labels: []
+    sourceColumn: zip
+    tags:
+      - Aircraft
+    title: Zip
+dataSourceTableId:
+  dataSourceId: vertica_local
+  id: aircraft
+  type: dataSource
+description: Aircraft
+facts: []
+grain:
+  - id: tail_num
+    type: attribute
+id: aircraft
+references:
+  - identifier:
+      id: air_worth_date
+      type: dataset
+    multivalue: false
+    sourceColumns:
+      - air_worth_date
+  - identifier:
+      id: aircraft_models
+      type: dataset
+    multivalue: false
+    sourceColumns:
+      - aircraft_model_code
+  - identifier:
+      id: cert_issue_date
+      type: dataset
+    multivalue: false
+    sourceColumns:
+      - cert_issue_date
+  - identifier:
+      id: last_action_date
+      type: dataset
+    multivalue: false
+    sourceColumns:
+      - last_action_date
+tags:
+  - Aircraft
+title: Aircraft

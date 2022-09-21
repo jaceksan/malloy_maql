@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  gooddata-cn-ce:
+    image: gooddata/gooddata-cn-ce:2.1
+    ports:
+      - "3000:3000"
+      - "5432:5432"
+    volumes:
+      - gooddata-cn-ce-data:/data
+    environment:
+      LICENSE_AND_PRIVACY_POLICY_ACCEPTED: "YES"
+      BUNDLE_TYPE: "gdc"
+
+  vertica:
+    environment:
+      VERTICA_DB_NAME: "verticadb"
+      APP_DB_USER: "malloy"
+      APP_DB_PASSWORD: "malloy123"
+      TZ: "Europe/Prague"
+    image: vertica/vertica-ce:12.0.0-0
+    ports:
+      - "5433:5433"
+      - "5444:5444"
+    volumes:
+      - vertica-data:/data
+      - ./malloy/data:/data/faa
+
+volumes:
+  gooddata-cn-ce-data:
+  vertica-data:
