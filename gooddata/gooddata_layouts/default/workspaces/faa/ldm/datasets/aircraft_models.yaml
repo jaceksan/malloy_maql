@@ -77,7 +77,7 @@ attributes:
       - Aircraft models
     title: Weight
 dataSourceTableId:
-  dataSourceId: vertica_local
+  dataSourceId: postgres_local
   id: aircraft_models
   type: dataSource
 description: Aircraft models

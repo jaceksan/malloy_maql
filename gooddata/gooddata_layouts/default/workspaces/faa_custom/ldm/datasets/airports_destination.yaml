@@ -35,7 +35,7 @@ attributes:
       - Airports (DEST)
     title: Name
 dataSourceTableId:
-  dataSourceId: vertica_local
+  dataSourceId: postgres_local
   id: airports_dest
   type: dataSource
 description: Airports (DEST)

@@ -35,7 +35,7 @@ attributes:
       - Airports (ORIGIN)
     title: Name
 dataSourceTableId:
-  dataSourceId: vertica_local
+  dataSourceId: postgres_local
   id: airports_origin
   type: dataSource
 description: Airports (ORIGIN)

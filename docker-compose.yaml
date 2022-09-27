@@ -12,20 +12,21 @@ services:
       LICENSE_AND_PRIVACY_POLICY_ACCEPTED: "YES"
       BUNDLE_TYPE: "gdc"
 
-  vertica:
+  gooddata-mm-demo-bootstrap:
+    build:
+      context: ./
+      dockerfile: Dockerfile_gooddata_bootstrap
+    tty: true
+    depends_on:
+      - gooddata-cn-ce
     environment:
-      VERTICA_DB_NAME: "verticadb"
-      APP_DB_USER: "malloy"
-      APP_DB_PASSWORD: "malloy123"
-      TZ: "Europe/Prague"
-    image: vertica/vertica-ce:12.0.0-0
-    ports:
-      - "5433:5433"
-      - "5444:5444"
-    volumes:
-      - vertica-data:/data
-      - ./malloy/data:/data/faa
+      TIGER_ENDPOINT: "http://gooddata-cn-ce:3000"
+      TIGER_API_TOKEN: "YWRtaW46Ym9vdHN0cmFwOmFkbWluMTIz"
+      DB_HOST: "gooddata-cn-ce"
+    entrypoint:
+      - bash
+      - -c
+      - "cd gooddata && ./bootstrap.sh"
 
 volumes:
   gooddata-cn-ce-data:
-  vertica-data:

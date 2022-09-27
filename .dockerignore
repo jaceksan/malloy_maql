@@ -1,0 +1,7 @@
+.idea
+.github
+doc
+gooddata/.venv
+gooddata/.ipynb_checkpoints
+gooddata/execute_report.ipynb
+malloy/data/*.csv

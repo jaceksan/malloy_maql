@@ -7,7 +7,7 @@ from pathlib import Path
 
 host = os.environ["TIGER_ENDPOINT"]
 token = os.environ["TIGER_API_TOKEN"]
-data_source_id = "vertica_local"
+data_source_id = "postgres_local"
 workspace_id = "faa"
 
 sdk = GoodDataSdk.create(host, token)

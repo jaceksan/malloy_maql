@@ -1,0 +1,8 @@
+enableCaching: false
+id: postgres_local
+name: Postgres local
+permissions: []
+schema: faa
+type: POSTGRESQL
+url: jdbc:postgresql://localhost:5432/demo
+username: demouser

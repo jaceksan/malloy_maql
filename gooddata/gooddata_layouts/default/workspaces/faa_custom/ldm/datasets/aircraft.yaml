@@ -7,7 +7,7 @@ attributes:
       - Aircraft
     title: Tail num
 dataSourceTableId:
-  dataSourceId: vertica_local
+  dataSourceId: postgres_local
   id: aircraft
   type: dataSource
 description: Aircraft

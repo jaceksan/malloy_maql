@@ -28,7 +28,7 @@ attributes:
       - Flights
     title: Id2
 dataSourceTableId:
-  dataSourceId: vertica_local
+  dataSourceId: postgres_local
   id: flights
   type: dataSource
 description: Flights
