@@ -1,0 +1,28 @@
+attributes:
+  - description: Tail num
+    id: tail_num
+    labels: []
+    sourceColumn: tail_num
+    tags:
+      - Aircraft
+    title: Tail num
+dataSourceTableId:
+  dataSourceId: postgres_local
+  id: aircraft
+  type: dataSource
+description: Aircraft
+facts: []
+grain:
+  - id: tail_num
+    type: attribute
+id: aircraft
+references:
+  - identifier:
+      id: aircraft_models
+      type: dataset
+    multivalue: false
+    sourceColumns:
+      - aircraft_model_code
+tags:
+  - Aircraft
+title: Aircraft

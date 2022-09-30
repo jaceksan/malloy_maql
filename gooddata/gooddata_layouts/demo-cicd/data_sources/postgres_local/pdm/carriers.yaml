@@ -1,0 +1,15 @@
+columns:
+  - dataType: STRING
+    isPrimaryKey: true
+    name: code
+  - dataType: STRING
+    isPrimaryKey: false
+    name: name
+  - dataType: STRING
+    isPrimaryKey: false
+    name: nickname
+id: carriers
+path:
+  - faa
+  - carriers
+type: TABLE

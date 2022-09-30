@@ -1,29 +1,38 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-from gooddata_sdk import GoodDataSdk
-import os
 from pathlib import Path
 
-host = os.environ["TIGER_ENDPOINT"]
-token = os.environ["TIGER_API_TOKEN"]
-data_source_id = "postgres_local"
-workspace_id = "faa"
+from libs.config import default_workspace_id, default_workspace_name, template_data_source_id
+from libs.data_source_config import DataSourceConfig
+from libs.sdk_wrapper import GoodDataSdkWrapper
+from gooddata_sdk import CatalogWorkspace
 
-sdk = GoodDataSdk.create(host, token)
 
-print("Load and put(register) data sources ...")
-sdk.catalog_data_source.load_and_put_declarative_data_sources(credentials_path=Path("data_sources_credentials.yaml"))
-print("Load and put declarative workspaces ...")
-sdk.catalog_workspace.load_and_put_declarative_workspace(workspace_id=workspace_id)
+sdk_wrapper = GoodDataSdkWrapper()
+sdk_wrapper.wait_for_gooddata_is_up()
+sdk = sdk_wrapper.sdk
+
+ds_config = DataSourceConfig(default_workspace_id)
+
+print(f"Register data source {ds_config.data_source_id} ...")
+sdk.catalog_data_source.create_or_update_data_source(ds_config.data_source)
+
+print(f"Create workspace {default_workspace_id} ...")
+sdk.catalog_workspace.create_or_update(CatalogWorkspace(default_workspace_id, default_workspace_name))
+
 print("Scan data source and put its metadata ...")
-sdk.catalog_data_source.scan_and_put_pdm(data_source_id=data_source_id)
+sdk.catalog_data_source.scan_and_put_pdm(data_source_id=ds_config.data_source_id)
 print("Generate logical data model ...")
-ldm = sdk.catalog_data_source.generate_logical_model(data_source_id=data_source_id)
+ldm = sdk.catalog_data_source.generate_logical_model(data_source_id=ds_config.data_source_id)
 print("Put logical data model ...")
-sdk.catalog_workspace_content.put_declarative_ldm(workspace_id=workspace_id, ldm=ldm)
+
+sdk.catalog_workspace_content.put_declarative_ldm(workspace_id=default_workspace_id, ldm=ldm)
+
 print("Store physical and logical models to local folder")
-sdk.catalog_data_source.store_declarative_data_sources()
-sdk.catalog_workspace.store_declarative_workspaces()
+pdm = sdk.catalog_data_source.get_declarative_pdm(ds_config.data_source_id)
+# Store PDM into pg_local folder, no matter what data source id in what GD environment was handled
+folder = sdk.catalog_data_source.data_source_folder(data_source_id=template_data_source_id, layout_root_path=Path.cwd())
+pdm.store_to_disk(folder)
+sdk.catalog_workspace.store_declarative_workspace(default_workspace_id)
 
 print("done")

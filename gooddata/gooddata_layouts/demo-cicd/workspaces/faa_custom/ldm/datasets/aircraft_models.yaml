@@ -1,0 +1,35 @@
+attributes:
+  - description: Aircraft model code
+    id: aircraft_model_code
+    labels: []
+    sourceColumn: aircraft_model_code
+    tags:
+      - Aircraft models
+    title: Aircraft model code
+  - description: Manufacturer
+    id: manufacturer
+    labels: []
+    sourceColumn: manufacturer
+    tags:
+      - Aircraft models
+    title: Manufacturer
+dataSourceTableId:
+  dataSourceId: postgres_local
+  id: aircraft_models
+  type: dataSource
+description: Aircraft models
+facts:
+  - description: Seats
+    id: seats
+    sourceColumn: seats
+    tags:
+      - Aircraft models
+    title: Seats
+grain:
+  - id: aircraft_model_code
+    type: attribute
+id: aircraft_models
+references: []
+tags:
+  - Aircraft models
+title: Aircraft models

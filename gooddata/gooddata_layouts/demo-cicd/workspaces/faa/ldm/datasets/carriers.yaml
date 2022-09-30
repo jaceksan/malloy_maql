@@ -1,0 +1,36 @@
+attributes:
+  - description: Code
+    id: carriers.code
+    labels: []
+    sourceColumn: code
+    tags:
+      - Carriers
+    title: Code
+  - description: Name
+    id: carriers.name
+    labels: []
+    sourceColumn: name
+    tags:
+      - Carriers
+    title: Name
+  - description: Nickname
+    id: nickname
+    labels: []
+    sourceColumn: nickname
+    tags:
+      - Carriers
+    title: Nickname
+dataSourceTableId:
+  dataSourceId: cust_demos_faa
+  id: carriers
+  type: dataSource
+description: Carriers
+facts: []
+grain:
+  - id: carriers.code
+    type: attribute
+id: carriers
+references: []
+tags:
+  - Carriers
+title: Carriers

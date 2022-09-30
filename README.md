@@ -11,6 +11,9 @@ GoodData.CN is closed source analytics platform providing MAQL language:
 
 Both languages can be used for writing even complex metrics(measures) in a way which is much more simple and maintainable than SQL.
 
+There is also GoodData.CN SaaS offering available and this demo can be easily deployed there.
+Just register to [trial](https://www.gooddata.com/trial/).
+
 ## Comparing incomparable
 While Malloy is an experimental analytics language providing an infrastructure for simple report executions,
 GoodData is a complete platform providing much more use cases, e.g.:
@@ -28,11 +31,13 @@ I am going to link a related article here with more details.
 Long story short, I conclude:
 - The semantic of models and metrics and reports is almost the same
   - I want to start discussing it with Malloy developers
-  - We should open source interpreters of our languages (ideally under Apache license) so we can translate from one to another
+  - We should (at least) open source interpreters of our languages (ideally under Apache license) so we can translate from one to another
 - Malloy is IDE centric while GoodData is UI centric
   - We GoodData are going to focus on developer experience in near future
 - Malloy does not support multi fact approach in metrics
   - [Already observed by PowerBI devs](https://datamonkeysite.com/2022/09/13/multi-fact-support-in-dax-and-malloy/)
+- GoodData does not support computed attributes, e.g. CONCAT(first_name, " ", surname) 
+  - It's on our roadmap
 
 ## Setup environment
 
@@ -41,7 +46,7 @@ Malloy's examples are very nice, so I decided to utilize them.
 [Here](https://github.com/looker-open-source/malloy#try-the-malloy-vscode-extension) you can find how to download and use Malloy vscode plugin and sample models. 
 I decided to use the FAA data model, which includes data (PARQUET files) as well.
 
-For instance, open e.g. [2_flights.malloy](malloy/2_flights.malloy) in vscode and click on "Run" inside the source code (before each "query" section).
+For instance, open [2_flights.malloy](malloy/2_flights.malloy) in vscode and click on "Run" inside the source code (before each "query" section).
 Malloy generates SQL query and executes it using [DuckDB](https://duckdb.org/docs/) database against the PARQUET files.
 The result is displayed in the right panel. You can also switch view to JSON or SQL.
 
@@ -58,6 +63,8 @@ In the root folder, run:
 # In separate terminal window, you can watch docker logs by executing:
 ./dl
 ```
+It should start in circa 2 minutes depending on your laptop hardware, at least 8G RAM is recommended.
+It starts in 1 minute on my 32G/16threads Ryzen laptop. It should work on Apple M2 as well. 
 
 The Malloy sample data (PARQUET files) are loaded by the side-container defined in the `docker-compose.yaml`.
 Also, GoodData models, metrics, insights(reports) and dashboards are loaded into the GoodData container.
@@ -77,9 +84,42 @@ The related documentation can be found here:
 - [Insights(Visualizations)](https://www.gooddata.com/developers/cloud-native/doc/2.1/create-visualizations/)
 - [Dashboards](https://www.gooddata.com/developers/cloud-native/doc/2.1/create-dashboards/)
 
-## How I build the GoodData solution for the Malloy sample
+#### ENV variables
+
+ENV variables affect where GoodData instance and the database containing the sample FAA data are running:
+```shell
+# Default pointing to your locally running GoodData community edition and its embedded PostgreSQL database
+source .gd_credentials
+
+# Create a custom file .custom_gd_credentials pointing to other than default organization 
+# .custom_*_credentials is ignored by git
+source .custom_gd_credentials
+
+# Example content of the custom file for GoodData SaaS (cloud) offering
+export TIGER_ENDPOINT="https://demo-cicd.cloud.gooddata.com"
+export TIGER_API_TOKEN="xxx"
+# Override where the database containing the sample FAA data is running
+export DB_HOST="xxx.yyy.eu-central-1.rds.amazonaws.com"
+export DB_NAME="gooddata"
+export DB_USER="demo"
+export DB_PASSWORD="xxx"
+export DATA_SOURCE_ID="cust_demos_faa"
+export DATA_SOURCE_NAME="Customer demos - FAA"
+```
+
+## How I built the GoodData solution for the Malloy FAA sample
+
+Generally, I started with local Community Edition and developed everything there.
+I created some artefacts in UI apps and synced their metadata to disk (described in the following chapters).
+
+Once the complete solution was done and synced to disk, 
+I duplicated [default](gooddata/goodata_layouts/default) folder to [default](demo-cicd/goodata_layouts/demo-cicd) folder to separate concerns.
+Then I created the corresponding organization(domain) in our SaaS, [reset ENV variables](#env-variables) accordingly and delivered the whole solution from the disk folder to this domain.
+
+TODO - Github actions pipeline delivering automatically into `demo-cicd` environment.
 
 ### Data load
+
 I prepared [load_faa_postgres.py](gooddata/load_faa_postgres.py) script, which:
 - Transforms PARQUET files into CSV files, because it is not easy to load PARQUET files into PostgreSQL database
   - We could load PARQUET files directly into other supported databases like Snowflake, Vertica, ...
@@ -89,9 +129,12 @@ I prepared [load_faa_postgres.py](gooddata/load_faa_postgres.py) script, which:
 - Adds column `name` concatenating `code` and `full_name` in `airports` table
   - GoodData does not support declaration of such computed attributes yet
 
+I loaded the data into community edition first (default).
+Later, when I validated the whole solution, I [reset the ENV variables](#env-variables) and loaded data into AWS RDS.
+
 ### Model
 
-In "gooddata" folder, I created python virtual env, and installed required libs:
+In [gooddata](gooddata) folder, I created python virtual env, and installed required libs:
 ```shell
 cd gooddata
 python -m venv .venv
@@ -99,14 +142,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-I set ENV variables needed for connection to GoodData platform:
+Then I bootstrap GoodData model using [bootstrap_model.py](gooddata/bootstrap_model.py) script:
 ```shell
-source .gd_credentials
-```
-
-Then I bootstrap GoodData model using [bootstrap.py](gooddata/bootstrap_model.py) script:
-```shell
-./bootstrap.py
+./bootstrap_model.py
 ```
 
 Note: all scripts interacting with GoodData instance utilize [GoodData Python SDK](https://github.com/gooddata/gooddata-python-sdk).
@@ -139,7 +177,7 @@ What I did for you:
 - I removed attributes/facts, which are not used in the Malloy's metric/report examples to keep the model simple
   - But the physical data model (the cache of metadata in GoodData) contains all columns, so it is easy to extend the logical data model by new entities and map them to not yet mapped physical columns
 
-Once the new model was ready, I deployed it using the [put_models.py](gooddata/put_models.py) script.
+Once the new model was ready, I deployed it using the [put_workspace_faa_custom.py](gooddata/put_workspace_faa_custom.py) script.
 
 The model can be also managed using GoodData LDM Modeler UI application:
 ![goodata_ldmm.png](doc/goodata_ldmm.png "LDM Modeler")
@@ -152,9 +190,8 @@ I created metrics using the `Metric Editor` UI application. It provides complete
 - Filter values are suggested in right places, e.g. `WHERE country = "<here existing country values are suggested>"`
 ![goodata_metric_editor.png](doc/goodata_metric_editor.png "Metric editor")
 
-To keep the repository up-to-date, I created the [store_analytics.py](gooddata/store_analytics.py) script -
-it stores the state of the analytics model in the GoodData instance(metrics, insights, dashboards) into the local folder [gooddata_layouts](gooddata/gooddata_layouts).
-Alternatively, you can store all metadata (data sources, LDM, analytics) to the folder with the [store_models.py](gooddata/store_models.py) script.
+To keep the repository up-to-date, I created the [store_analytics.py](gooddata/store_analytics_faa_custom.py) script -
+it stores the state of the analytics model(metrics, insights, dashboards) from the GoodData instance into the local folder [gooddata_layouts](gooddata/gooddata_layouts).
 
 ### Reports
 Malloy calls them `queries`, GoodData calls them `insights`.
@@ -170,7 +207,7 @@ Run jupyter in the `gooddata` folder:
 jupyter notebook
 ```
 
-Open the file [execute_report.ipynb](gooddata/execute_report.ipynb) and run cells.
+Open the file [execute_report.ipynb](gooddata/execute_report.ipynb) and run cells (run them all one by one):
 There are two use cases:
 - compose the report from metrics and attributes(labels)
 - execute the already stored report (insight)

@@ -23,6 +23,7 @@ services:
       TIGER_ENDPOINT: "http://gooddata-cn-ce:3000"
       TIGER_API_TOKEN: "YWRtaW46Ym9vdHN0cmFwOmFkbWluMTIz"
       DB_HOST: "gooddata-cn-ce"
+      OVERRIDE_HOST: "localhost"
     entrypoint:
       - bash
       - -c

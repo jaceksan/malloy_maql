@@ -83,8 +83,8 @@ columns:
   - dataType: STRING
     isPrimaryKey: false
     name: state
-id: airports_origin
+id: airports
 path:
   - faa
-  - airports_origin
+  - airports
 type: TABLE
