@@ -36,7 +36,7 @@ attributes:
     title: Name
 dataSourceTableId:
   dataSourceId: postgres_local
-  id: airports_origin
+  id: airports
   type: dataSource
 description: Airports (ORIGIN)
 facts:

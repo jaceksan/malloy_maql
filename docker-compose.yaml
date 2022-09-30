@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   gooddata-cn-ce:
-    image: gooddata/gooddata-cn-ce:2.1
+    image: gooddata/gooddata-cn-ce:dev_latest
     ports:
       - "3000:3000"
       - "5432:5432"
