@@ -118,7 +118,7 @@ Specifically, the following steps are managed:
 
 Complete GoodData metadata are stored in [gooddata_layouts](gooddata/gooddata_layouts) folder:
 - `default` folder represents the GoodData instance, resp. the organization(default) connected to domain(http://localhost:3000).
-  - `data_sources` folder contains metadata about the registered Vertica database and its table/column metadata
+  - `data_sources` folder contains metadata about the registered PostgreSQL database and its table/column metadata
   - `workspaces` folder contain LDM and analytics model(metrics, insights, dashboards)
 
 **But nothing is perfect** ;-) 
