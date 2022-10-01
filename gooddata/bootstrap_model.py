@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from gooddata_sdk import GoodDataSdk
-import os
 from pathlib import Path
 
-host = os.environ["TIGER_ENDPOINT"]
-token = os.environ["TIGER_API_TOKEN"]
+from config import Config
+
+sdk = Config.sdk
 data_source_id = "postgres_local"
 workspace_id = "faa"
-
-sdk = GoodDataSdk.create(host, token)
 
 print("Load and put(register) data sources ...")
 sdk.catalog_data_source.load_and_put_declarative_data_sources(credentials_path=Path("data_sources_credentials.yaml"))

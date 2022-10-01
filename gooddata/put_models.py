@@ -4,6 +4,7 @@
 from pathlib import Path
 import os
 from gooddata_sdk import GoodDataSdk
+from utils import pre_cache_insights
 
 host = os.environ["TIGER_ENDPOINT"]
 token = os.environ["TIGER_API_TOKEN"]
@@ -19,5 +20,7 @@ print("Load and put data sources ...")
 sdk.catalog_data_source.load_and_put_declarative_data_sources(credentials_path=Path("data_sources_credentials.yaml"))
 print("Load and put workspaces ...")
 sdk.catalog_workspace.load_and_put_declarative_workspaces()
+print("Pre cahce insights")
+pre_cache_insights(sdk)
 
 print("done")

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (C) 2020 GoodData Corporation
+# (C) 2022 GoodData Corporation
 from __future__ import annotations
 
 import logging
@@ -8,7 +8,7 @@ import traceback
 from time import time, sleep
 from typing import Any
 from pathlib import Path
-import attr
+from attrs import define
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from psycopg2 import errors, errorcodes
@@ -17,7 +17,7 @@ from psycopg2 import errors, errorcodes
 CONNECTION_TIMEOUT = 60000  # milliseconds
 
 
-@attr.s(auto_attribs=True, kw_only=True)
+@define(auto_attribs=True, kw_only=True)
 class PostgresDbConfig:
     db_host: str
     db_port: int
