@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 
-from libs.config import default_workspace_id, default_workspace_name, template_data_source_id
+from libs.constants import default_workspace_id, default_workspace_name, template_data_source_id
 from libs.data_source_config import DataSourceConfig
 from libs.sdk_wrapper import GoodDataSdkWrapper
 from gooddata_sdk import CatalogWorkspace

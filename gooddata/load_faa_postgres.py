@@ -7,15 +7,17 @@ from pandas import DataFrame
 import logging
 from databases.postgres import PostgresDbConfig, Postgres
 from libs.data_source_config import DataSourceConfig
-from libs.config import default_workspace_id
+from libs.constants import default_workspace_id
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 entities = [
     "aircraft_models", "aircraft", "airports", "carriers", "flights"
 ]
-data_dir = Path("..") / "malloy" / "data"
-ddl_dir = Path(".") / "ddl" / default_workspace_id
-transform_dir = Path(".") / "transform" / default_workspace_id
+repo_root_dir = Path(__file__).parent.parent.absolute()
+gooddata_dir = "gooddata"
+data_dir = repo_root_dir / "malloy" / "data"
+ddl_dir = repo_root_dir / gooddata_dir / "ddl" / default_workspace_id
+transform_dir = repo_root_dir / gooddata_dir / "transform" / default_workspace_id
 
 ds_config = DataSourceConfig(default_workspace_id)
 

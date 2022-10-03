@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (C) 2022 GoodData Corporation
-from libs.config import custom_workspace_id, custom_workspace_name, template_data_source_id
+from libs.constants import custom_workspace_id, custom_workspace_name, template_data_source_id
 from libs.data_source_config import DataSourceConfig
 from libs.sdk_wrapper import GoodDataSdkWrapper
 from gooddata_sdk import CatalogWorkspace

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from libs.config import custom_workspace_id
+from libs.constants import custom_workspace_id
 from libs.sdk_wrapper import GoodDataSdkWrapper
 
 sdk = GoodDataSdkWrapper().sdk

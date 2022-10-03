@@ -59,12 +59,13 @@ I decided to utilize the PostgreSQL database embedded in the GoodData container.
 There is [docker-compose.yaml](./docker-compose.yaml) file for this purpose.
 In the root folder, run:
 ```shell
-./dcc up -d
+docker-compose up -d
 # In separate terminal window, you can watch docker logs by executing:
-./dl
+./dcc logs --tail=10 -f
+# Or you can use the helper scripts `dcc` and `dl` in the root directory
 ```
 It should start in circa 2 minutes depending on your laptop hardware, at least 8G RAM is recommended.
-It starts in 1 minute on my 32G/16threads Ryzen laptop. It should work on Apple M2 as well. 
+It starts in 1 minute on my 32G/16threads Ryzen laptop. It should work on Apple Silicon as well. 
 
 The Malloy sample data (PARQUET files) are loaded by the side-container defined in the `docker-compose.yaml`.
 Also, GoodData models, metrics, insights(reports) and dashboards are loaded into the GoodData container.
@@ -156,7 +157,7 @@ Specifically, the following steps are managed:
 
 Complete GoodData metadata are stored in [gooddata_layouts](gooddata/gooddata_layouts) folder:
 - `default` folder represents the GoodData instance, resp. the organization(default) connected to domain(http://localhost:3000).
-  - `data_sources` folder contains metadata about the registered Vertica database and its table/column metadata
+  - `data_sources` folder contains metadata about the registered PostgreSQL database and its table/column metadata
   - `workspaces` folder contain LDM and analytics model(metrics, insights, dashboards)
 
 **But nothing is perfect** ;-) 
