@@ -8,9 +8,7 @@ from libs.sdk_wrapper import GoodDataSdkWrapper
 from gooddata_sdk import CatalogWorkspace
 
 
-sdk_wrapper = GoodDataSdkWrapper()
-sdk_wrapper.wait_for_gooddata_is_up()
-sdk = sdk_wrapper.sdk
+sdk = GoodDataSdkWrapper().sdk
 
 ds_config = DataSourceConfig(default_workspace_id)
 

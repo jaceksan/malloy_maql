@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# (C) 2022 GoodData Corporation
 from libs.config import custom_workspace_id, custom_workspace_name, template_data_source_id
 from libs.data_source_config import DataSourceConfig
 from libs.sdk_wrapper import GoodDataSdkWrapper
@@ -7,7 +8,6 @@ from gooddata_sdk import CatalogWorkspace
 
 
 sdk_wrapper = GoodDataSdkWrapper()
-sdk_wrapper.wait_for_gooddata_is_up()
 sdk = sdk_wrapper.sdk
 
 ds_config = DataSourceConfig(custom_workspace_id)
@@ -28,5 +28,8 @@ sdk.catalog_workspace_content.put_declarative_ldm(workspace_id=custom_workspace_
 
 print(f"Put ADM ...")
 sdk.catalog_workspace_content.load_and_put_declarative_analytics_model(workspace_id=custom_workspace_id)
+
+print("Pre-cache insights ...")
+sdk_wrapper.pre_cache_insights()
 
 print("done")
