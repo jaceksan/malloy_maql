@@ -11,6 +11,8 @@ content:
                     type: metric
             localIdentifier: 819b757028a44faaa6645387e9ef10a3
             title: Airport count
+      localIdentifier: measures
+    - items:
         - measure:
             definition:
               measureDefinition:
@@ -21,7 +23,7 @@ content:
                     type: metric
             localIdentifier: eb440a17a53c4352aafca85290005e48
             title: Avg elevation
-      localIdentifier: measures
+      localIdentifier: secondary_measures
     - items:
         - attribute:
             displayForm:
@@ -29,17 +31,12 @@ content:
                 id: origin.fac_type
                 type: label
             localIdentifier: f3f1875230b9477f919c936231a7a6cf
-      localIdentifier: attribute
+      localIdentifier: view
   filters: []
   properties: {}
-  sorts:
-    - measureSortItem:
-        direction: desc
-        locators:
-          - measureLocatorItem:
-              measureIdentifier: 819b757028a44faaa6645387e9ef10a3
+  sorts: []
   version: '2'
-  visualizationUrl: local:table
+  visualizationUrl: local:bubble
 description: Airports - by facility type
 id: airports_by_facility_type
 title: Airports - by facility type
