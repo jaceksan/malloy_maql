@@ -182,7 +182,7 @@ attributes:
       - Airports
     title: Site number
 dataSourceTableId:
-  dataSourceId: postgres_local
+  dataSourceId: pg_local
   id: airports
   type: dataSource
 description: Airports

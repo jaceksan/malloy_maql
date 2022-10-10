@@ -1,90 +1,83 @@
 columns:
   - dataType: STRING
     isPrimaryKey: false
-    name: act_date
+    name: address1
   - dataType: STRING
     isPrimaryKey: false
-    name: aero_cht
+    name: address2
+  - dataType: DATE
+    isPrimaryKey: false
+    name: air_worth_date
   - dataType: STRING
     isPrimaryKey: false
-    name: c_ldg_rts
-  - dataType: STRING
-    isPrimaryKey: false
-    name: cbd_dir
+    name: aircraft_engine_code
   - dataType: INT
     isPrimaryKey: false
-    name: cbd_dist
+    name: aircraft_engine_type_id
   - dataType: STRING
     isPrimaryKey: false
-    name: cert
+    name: aircraft_model_code
+    referencedTableColumn: aircraft_model_code
+    referencedTableId: aircraft_models
+  - dataType: STRING
+    isPrimaryKey: false
+    name: aircraft_serial
+  - dataType: INT
+    isPrimaryKey: false
+    name: aircraft_type_id
+  - dataType: DATE
+    isPrimaryKey: false
+    name: cert_issue_date
+  - dataType: STRING
+    isPrimaryKey: false
+    name: certification
   - dataType: STRING
     isPrimaryKey: false
     name: city
   - dataType: STRING
     isPrimaryKey: false
-    name: cntl_twr
-  - dataType: STRING
-    isPrimaryKey: true
-    name: code
+    name: country
   - dataType: STRING
     isPrimaryKey: false
     name: county
   - dataType: STRING
     isPrimaryKey: false
-    name: cust_intl
-  - dataType: INT
-    isPrimaryKey: false
-    name: elevation
-  - dataType: STRING
-    isPrimaryKey: false
-    name: faa_dist
-  - dataType: STRING
-    isPrimaryKey: false
-    name: faa_region
-  - dataType: STRING
-    isPrimaryKey: false
-    name: fac_type
-  - dataType: STRING
-    isPrimaryKey: false
-    name: fac_use
-  - dataType: STRING
-    isPrimaryKey: false
-    name: fed_agree
-  - dataType: STRING
-    isPrimaryKey: false
-    name: full_name
+    name: fract_owner
   - dataType: INT
     isPrimaryKey: false
     name: id
+  - dataType: DATE
+    isPrimaryKey: false
+    name: last_action_date
   - dataType: STRING
     isPrimaryKey: false
-    name: joint_use
-  - dataType: NUMERIC
-    isPrimaryKey: false
-    name: latitude
-  - dataType: NUMERIC
-    isPrimaryKey: false
-    name: longitude
-  - dataType: STRING
-    isPrimaryKey: false
-    name: major
-  - dataType: STRING
-    isPrimaryKey: false
-    name: mil_rts
+    name: mode_s_code
   - dataType: STRING
     isPrimaryKey: false
     name: name
   - dataType: STRING
     isPrimaryKey: false
-    name: own_type
-  - dataType: STRING
+    name: region
+  - dataType: INT
     isPrimaryKey: false
-    name: site_number
+    name: registrant_type_id
   - dataType: STRING
     isPrimaryKey: false
     name: state
-id: airports_dest
+  - dataType: STRING
+    isPrimaryKey: false
+    name: status_code
+  - dataType: STRING
+    isPrimaryKey: true
+    name: tail_num
+  - dataType: INT
+    isPrimaryKey: false
+    name: year_built
+  - dataType: STRING
+    isPrimaryKey: false
+    name: zip
+id: aircraft
 path:
   - faa
-  - airports_dest
+  - aircraft
 type: TABLE

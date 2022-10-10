@@ -4,6 +4,7 @@ content:
         - measure:
             definition:
               measureDefinition:
+                computeRatio: false
                 filters: []
                 item:
                   identifier:
@@ -19,7 +20,7 @@ content:
                 id: dest.airports.state
                 type: label
             localIdentifier: 250cc69ed230447abf4de155d78b749f
-      localIdentifier: attribute
+      localIdentifier: view
   filters:
     - negativeAttributeFilter:
         displayForm:
@@ -30,14 +31,9 @@ content:
           values:
             - ''
   properties: {}
-  sorts:
-    - measureSortItem:
-        direction: desc
-        locators:
-          - measureLocatorItem:
-              measureIdentifier: 36845878d4b644d0a59fabbc29e01156
+  sorts: []
   version: '2'
-  visualizationUrl: local:table
+  visualizationUrl: local:bar
 description: Airports - by state
 id: airports_by_state
 title: Airports - by state
