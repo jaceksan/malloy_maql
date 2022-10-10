@@ -1,0 +1,8 @@
+content:
+  format: '#,##0'
+  maql: "SELECT AVG({fact/flight_time})\n  WHERE (\n  SELECT AVG({fact/distance})\n\
+    \    WHERE (\n    SELECT AVG({fact/dep_delay}) - AVG({fact/arr_delay})\n    )\
+    \ > 0\n  ) > 1000"
+description: ''
+id: complex_metric_example
+title: Complex metric example
