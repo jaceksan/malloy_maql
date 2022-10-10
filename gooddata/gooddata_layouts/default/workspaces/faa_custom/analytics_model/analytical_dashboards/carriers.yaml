@@ -29,6 +29,6 @@ content:
         type: IDashboardLayoutSection
     type: IDashboardLayout
   version: '2'
-description: 'Inspired by 3_carrier_analysis.malloy from Malloy samples'
+description: Inspired by 3_carrier_analysis.malloy from Malloy samples
 id: carriers
 title: 03 - Carriers

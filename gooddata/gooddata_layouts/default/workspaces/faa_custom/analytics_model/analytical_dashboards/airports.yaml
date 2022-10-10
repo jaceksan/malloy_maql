@@ -64,6 +64,6 @@ content:
         type: IDashboardLayoutSection
     type: IDashboardLayout
   version: '2'
-description: 'Inspired by 1_airports.malloy from Malloy samples'
+description: Inspired by 1_airports.malloy from Malloy samples
 id: airports
 title: 01 - Airports
