@@ -1,6 +1,0 @@
-content:
-  format: '#,##0'
-  maql: SELECT SUM({fact/distance})
-description: ''
-id: total_distance
-title: Total distance

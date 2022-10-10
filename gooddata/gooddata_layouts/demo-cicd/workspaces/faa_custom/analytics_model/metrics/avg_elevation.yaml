@@ -1,6 +1,0 @@
-content:
-  format: '#,##0.00'
-  maql: SELECT AVG({fact/origin.elevation})
-description: ''
-id: avg_elevation
-title: Avg elevation

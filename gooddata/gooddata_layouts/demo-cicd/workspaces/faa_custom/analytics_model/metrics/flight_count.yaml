@@ -1,6 +1,0 @@
-content:
-  format: '#,##0'
-  maql: SELECT COUNT({dataset/flights})
-description: ''
-id: flight_count
-title: Flight count
