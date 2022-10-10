@@ -1,6 +1,0 @@
-content:
-  format: '#,##0'
-  maql: SELECT COUNT({dataset/dest.airports})
-description: ''
-id: destination_count
-title: Destination count
