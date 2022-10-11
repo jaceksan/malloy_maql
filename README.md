@@ -61,7 +61,7 @@ In the root folder, run:
 ```shell
 docker-compose up -d
 # In separate terminal window, you can watch docker logs by executing:
-./dcc logs --tail=10 -f
+docker-compose logs --tail=10 -f
 # Or you can use the helper scripts `dcc` and `dl` in the root directory
 ```
 It should start in circa 2 minutes depending on your laptop hardware, at least 8G RAM is recommended.
