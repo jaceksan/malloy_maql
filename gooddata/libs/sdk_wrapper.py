@@ -31,10 +31,11 @@ class GoodDataSdkWrapper:
         self.sdk.support.wait_till_available(timeout=timeout)
         print(f"Host {self.host} is up.", flush=True)
 
-    def pre_cache_insights(self):
-        workspaces = self.sdk.catalog_workspace.list_workspaces()
-        for workspace in workspaces:
-            insights = self.sdk.insights.get_insights(workspace.id)
+    def pre_cache_insights(self, workspaces: list = None) -> None:
+        if not workspaces:
+            workspaces = [w.id for w in self.sdk.catalog_workspace.list_workspaces()]
+        for workspace_id in workspaces:
+            insights = self.sdk.insights.get_insights(workspace_id)
 
             for insight in insights:
-                self.sdk.tables.for_insight(workspace.id, insight)
+                self.sdk.tables.for_insight(workspace_id, insight)

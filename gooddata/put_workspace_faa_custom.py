@@ -30,6 +30,6 @@ print(f"Put ADM ...")
 sdk.catalog_workspace_content.load_and_put_declarative_analytics_model(workspace_id=custom_workspace_id)
 
 print("Pre-cache insights ...")
-sdk_wrapper.pre_cache_insights()
+sdk_wrapper.pre_cache_insights([custom_workspace_id])
 
 print("done")
