@@ -103,6 +103,8 @@ export TIGER_API_TOKEN="xxx"
 export DB_HOST="xxx.yyy.eu-central-1.rds.amazonaws.com"
 export DB_NAME="gooddata"
 export DB_USER="demo"
+export DB_INPUT_SCHEMA="faa_input"
+export DB_OUTPUT_SCHEMA="faa"
 export DB_PASSWORD="xxx"
 export DATA_SOURCE_ID="cust_demos_faa"
 export DATA_SOURCE_NAME="Customer demos - FAA"
@@ -114,7 +116,7 @@ Generally, I started with local Community Edition and developed everything there
 I created some artefacts in UI apps and synced their metadata to disk (described in the following chapters).
 
 Once the complete solution was done and synced to disk, 
-I duplicated [default](gooddata/goodata_layouts/default) folder to [default](demo-cicd/goodata_layouts/demo-cicd) folder to separate concerns.
+I linked(symlink) [default](gooddata/goodata_layouts/default) folder to [demo-cicd](gooddata/demo-cicd/goodata_layouts/demo-cicd).
 Then I created the corresponding organization(domain) in our SaaS, [reset ENV variables](#env-variables) accordingly and delivered the whole solution from the disk folder to this domain.
 
 TODO - Github actions pipeline delivering automatically into `demo-cicd` environment.
@@ -126,12 +128,14 @@ I prepared [load_faa_postgres.py](gooddata/load_faa_postgres.py) script, which:
   - We could load PARQUET files directly into other supported databases like Snowflake, Vertica, ...
   - I had to remove some rows from `flights` table, because they violate the referential integrity 
 - Creates tables
-- Loads data
-- Adds column `name` concatenating `code` and `full_name` in `airports` table
-  - GoodData does not support declaration of such computed attributes yet
+- Loads CSV files into tables
 
 I loaded the data into community edition first (default).
 Later, when I validated the whole solution, I [reset the ENV variables](#env-variables) and loaded data into AWS RDS.
+
+Based on the Malloy examples, I need to add the column `name` concatenating `code` and `full_name` in `airports` table.
+GoodData does not support declaration of such computed attributes yet out of the box.
+So I prepared a transformation layer using [dbt](https://www.getdbt.com/), everything related is stored in [transform](gooddata/transform) folder.
 
 ### Model
 

@@ -9,6 +9,5 @@ create table "aircraft_models"(
   "engines" int,
   "seats" int,
   "weight" int,
-  "speed" int,
-  constraint "pk_aircraft_models" primary key ("aircraft_model_code")
+  "speed" int
 );

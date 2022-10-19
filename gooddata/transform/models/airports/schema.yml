@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: airports
+    columns:
+      - name: code
+        tests:
+          - dbt_constraints.primary_key

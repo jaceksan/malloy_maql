@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: carriers
+    columns:
+      - name: code
+        tests:
+          - dbt_constraints.primary_key

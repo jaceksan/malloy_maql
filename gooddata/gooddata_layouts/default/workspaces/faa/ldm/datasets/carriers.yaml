@@ -21,7 +21,7 @@ attributes:
       - Carriers
     title: Nickname
 dataSourceTableId:
-  dataSourceId: pg_local
+  dataSourceId: postgres_local
   id: carriers
   type: dataSource
 description: Carriers

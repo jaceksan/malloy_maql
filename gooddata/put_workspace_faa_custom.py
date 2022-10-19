@@ -10,7 +10,7 @@ from gooddata_sdk import CatalogWorkspace
 sdk_wrapper = GoodDataSdkWrapper()
 sdk = sdk_wrapper.sdk
 
-ds_config = DataSourceConfig(custom_workspace_id)
+ds_config = DataSourceConfig()
 
 print(f"Create or update workspace {custom_workspace_id} ...")
 sdk.catalog_workspace.create_or_update(

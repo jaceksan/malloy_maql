@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: aircraft
+    columns:
+      - name: tail_num
+        tests:
+          - dbt_constraints.primary_key
+      - name: aircraft_model_code
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('aircraft_models')
+              pk_column_name: aircraft_model_code

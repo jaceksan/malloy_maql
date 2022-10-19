@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: aircraft_models
+    columns:
+      - name: aircraft_model_code
+        tests:
+          - dbt_constraints.primary_key

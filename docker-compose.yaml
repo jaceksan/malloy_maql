@@ -22,8 +22,13 @@ services:
     environment:
       TIGER_ENDPOINT: "http://gooddata-cn-ce:3000"
       TIGER_API_TOKEN: "YWRtaW46Ym9vdHN0cmFwOmFkbWluMTIz"
-      DB_HOST: "gooddata-cn-ce"
       OVERRIDE_HOST: "localhost"
+      DB_HOST: "gooddata-cn-ce"
+      DB_USER: "demouser"
+      DB_PASSWORD: "demopass"
+      DB_NAME: "demo"
+      DB_INPUT_SCHEMA: "faa_input"
+      DB_OUTPUT_SCHEMA: "faa"
     entrypoint:
       - bash
       - -c
