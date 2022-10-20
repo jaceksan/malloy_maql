@@ -14,9 +14,5 @@ create table "flights"(
   "distance" int,
   "cancelled" varchar,
   "diverted" varchar,
-  "id2" int,
-  constraint "pk_flights" primary key ("id2"),
-  constraint "fk_flights_carriers" foreign key ("carrier") references "carriers"("code"),
-  constraint "fk_flights_airports" foreign key ("origin") references "airports"("code"),
-  constraint "fk_flights_aircraft" foreign key ("tail_num") references "aircraft"("tail_num")
+  "id2" int
 );

@@ -77,7 +77,7 @@ attributes:
       - Flights
     title: Taxi out
 dataSourceTableId:
-  dataSourceId: pg_local
+  dataSourceId: postgres_local
   id: flights
   type: dataSource
 description: Flights

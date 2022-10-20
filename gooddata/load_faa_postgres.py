@@ -19,7 +19,7 @@ data_dir = repo_root_dir / "malloy" / "data"
 ddl_dir = repo_root_dir / gooddata_dir / "ddl" / default_workspace_id
 transform_dir = repo_root_dir / gooddata_dir / "transform" / default_workspace_id
 
-ds_config = DataSourceConfig(default_workspace_id)
+ds_config = DataSourceConfig()
 
 
 def get_db_config() -> PostgresDbConfig:
@@ -56,9 +56,10 @@ def parquet_to_csv():
 
 
 def recreate_schema(postgres: Postgres):
-    postgres.drop_schema_if_exists(ds_config.db_schema)
-    postgres.create_schema_if_not_exists(ds_config.db_schema)
-    postgres.set_schema(ds_config.db_schema)
+    logging.info(f"Recreate schema {ds_config.db_input_schema} ...")
+    postgres.drop_schema_if_exists(ds_config.db_input_schema)
+    postgres.create_schema_if_not_exists(ds_config.db_input_schema)
+    postgres.set_schema(ds_config.db_input_schema)
 
 
 def create_tables(postgres: Postgres):
@@ -75,18 +76,6 @@ def load_files(postgres: Postgres):
         postgres.load_file(entity, csv_file, skip_header=True)
 
 
-def transform(postgres: Postgres):
-    with open(transform_dir / f"{default_workspace_id}.sql") as fp:
-        file_content = fp.read()
-    re_split = re.compile(r'^;$', re.M)
-    # Skip empty queries created by split
-    queries = [q for q in re_split.split(file_content) if re.search(r'[a-zA-Z]', q)]
-    for query in queries:
-        report_query = re.sub(r'\n', ' ', query)
-        logging.info(f"Executing query >{report_query}<")
-        postgres.execute_query(query)
-
-
 def main():
     logging.info("START")
     db_config = get_db_config()
@@ -96,7 +85,6 @@ def main():
         parquet_to_csv()
         create_tables(postgres)
         load_files(postgres)
-        transform(postgres)
     finally:
         postgres.close_connections()
         logging.info("END")

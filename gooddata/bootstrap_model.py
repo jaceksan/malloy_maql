@@ -10,7 +10,7 @@ from gooddata_sdk import CatalogWorkspace
 
 sdk = GoodDataSdkWrapper().sdk
 
-ds_config = DataSourceConfig(default_workspace_id)
+ds_config = DataSourceConfig()
 
 print(f"Register data source {ds_config.data_source_id} ...")
 sdk.catalog_data_source.create_or_update_data_source(ds_config.data_source)

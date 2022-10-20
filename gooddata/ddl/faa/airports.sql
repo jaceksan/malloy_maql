@@ -25,6 +25,5 @@ create table "airports"(
    "joint_use" varchar,
    "mil_rts" varchar,
    "cntl_twr" varchar,
-   "major" varchar,
-   constraint "pk_airports" primary key ("code")
+   "major" varchar
 );

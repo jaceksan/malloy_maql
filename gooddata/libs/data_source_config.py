@@ -5,9 +5,6 @@ from gooddata_sdk import CatalogDataSource, BasicCredentials
 
 class DataSourceConfig:
     # Default values correspond to the GoodData community edition running on localhost (docker-compose.yaml)
-    def __init__(self, workspace_id: str):
-        self.workspace_id = workspace_id
-
     @property
     def db_host(self) -> str:
         return os.getenv('DB_HOST', 'localhost')
@@ -33,8 +30,12 @@ class DataSourceConfig:
         return f"jdbc:postgresql://{self.db_host}:{self.db_port}/{self.db_name}"
 
     @property
-    def db_schema(self) -> str:
-        return os.getenv("DB_SCHEMA", self.workspace_id)
+    def db_input_schema(self) -> str:
+        return os.getenv("DB_INPUT_SCHEMA", "faa_input")
+
+    @property
+    def db_output_schema(self) -> str:
+        return os.getenv("DB_OUTPUT_SCHEMA", "faa")
 
     @property
     def data_source_id(self) -> str:
@@ -49,7 +50,7 @@ class DataSourceConfig:
         return CatalogDataSource(
             id=self.data_source_id,
             name=self.data_source_name,
-            schema=self.db_schema,
+            schema=self.db_output_schema,
             credentials=BasicCredentials(
                 username=self.db_user, password=self.db_password
             ),

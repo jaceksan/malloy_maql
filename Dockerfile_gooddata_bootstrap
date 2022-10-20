@@ -6,5 +6,6 @@ COPY gooddata gooddata
 COPY malloy/data malloy/data
 
 RUN pip3 install -r gooddata/requirements.txt
+RUN pip3 install -r gooddata/transform/requirements.txt
 
 ENTRYPOINT "bash"

@@ -23,7 +23,5 @@ create table "aircraft"(
   "fract_owner" varchar,
   "last_action_date" date,
   "cert_issue_date" date,
-  "air_worth_date" date,
-  constraint "pk_aircraft" primary key ("tail_num"),
-  constraint "fk_aircraft_aircraft_models" foreign key ("aircraft_model_code") references "aircraft_models"("aircraft_model_code")
+  "air_worth_date" date
 );

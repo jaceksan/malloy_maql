@@ -147,7 +147,7 @@ attributes:
       - Aircraft
     title: Zip
 dataSourceTableId:
-  dataSourceId: pg_local
+  dataSourceId: postgres_local
   id: aircraft
   type: dataSource
 description: Aircraft
