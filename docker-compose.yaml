@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   gooddata-cn-ce:
-    image: gooddata/gooddata-cn-ce:dev_latest
+    image: gooddata/gooddata-cn-ce:2.2
     ports:
       - "3000:3000"
       - "5432:5432"
@@ -11,6 +11,7 @@ services:
     environment:
       LICENSE_AND_PRIVACY_POLICY_ACCEPTED: "YES"
       BUNDLE_TYPE: "gdc"
+      GDC_FEATURES_VALUES_ENABLE_METRIC_SQL_AND_DATA_EXPLAIN: 'ENABLED'
 
   gooddata-mm-demo-bootstrap:
     build:
