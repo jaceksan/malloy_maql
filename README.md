@@ -5,23 +5,23 @@ Looker Malloy is experimental open source language:
 - [Documentation](https://looker-open-source.github.io/malloy/documentation/) 
 
 GoodData.CN is closed source analytics platform providing MAQL language:
-- [Platform documentation](https://www.gooddata.com/developers/cloud-native/doc/2.1)
-- [MAQL documentation](https://www.gooddata.com/developers/cloud-native/doc/2.1/create-metrics/maql/)
-- The language is supported by so-called [Logical Data Model(LDM)](https://www.gooddata.com/developers/cloud-native/doc/2.1/model-data/create-ldm/)
+- [Platform documentation](https://www.gooddata.com/developers/cloud-native/doc/2.2?utm_medium=blogpost&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [MAQL documentation](https://www.gooddata.com/developers/cloud-native/doc/2.2/create-metrics/maql/?utm_medium=blogpost&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- The language is supported by so-called [Logical Data Model(LDM)](https://www.gooddata.com/developers/cloud-native/doc/2.1/model-data/create-ldm/?utm_medium=blogpost&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
 
 Both languages can be used for writing even complex metrics(measures) in a way which is much more simple and maintainable than SQL.
 
 There is also GoodData.CN SaaS offering available and this demo can be easily deployed there.
-Just register to [trial](https://www.gooddata.com/trial/).
+Just register to [trial](https://www.gooddata.com/trial/?utm_medium=blogpost&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek).
 
 ## Comparing incomparable
 While Malloy is an experimental analytics language providing an infrastructure for simple report executions,
 GoodData is a complete platform providing much more use cases, e.g.:
-- Support for [many data sources](https://www.gooddata.com/developers/cloud-native/doc/2.1/connect-data/supported/) and so-called [data source managers](https://www.gooddata.com/developers/cloud-native/doc/2.1/connect-data/data-source-managers/)
-- [User management and authentication (OIDC), permissions](https://www.gooddata.com/developers/cloud-native/doc/2.1/manage-deployment/)
-- [Embedding](https://www.gooddata.com/developers/cloud-native/doc/2.1/embed-visualizations/)
-- [Multi-tenancy](https://www.gooddata.com/developers/cloud-native/doc/2.1/manage-deployment/manage-workspaces/workspaces-layout/)
-- [Cache management](https://www.gooddata.com/developers/cloud-native/doc/2.1/connect-data/cache-management/)
+- Support for [many data sources](https://www.gooddata.com/developers/cloud-native/doc/2.2/connect-data/supported/?utm_medium=blogpost&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek) and so-called [data source managers](https://www.gooddata.com/developers/cloud-native/doc/2.2/connect-data/data-source-managers/?utm_medium=blogpost&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [User management and authentication (OIDC), permissions](https://www.gooddata.com/developers/cloud-native/doc/2.2/manage-deployment/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [Embedding](https://www.gooddata.com/developers/cloud-native/doc/2.2/embed-visualizations/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [Multi-tenancy](https://www.gooddata.com/developers/cloud-native/doc/2.2/manage-deployment/manage-workspaces/workspaces-layout/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [Cache management](https://www.gooddata.com/developers/cloud-native/doc/2.2/connect-data/cache-management/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
 
 However, in this demo I focus on modelling, metrics and report executions, where it makes sense to compare Malloy with GoodData. 
 
@@ -80,10 +80,10 @@ In the UI, switch workspace to `FAA custom`.
 - [3_carrier_analysis.malloy](malloy/3_carrier_analysis.malloy)
 
 The related documentation can be found here:
-- [Model Data](https://www.gooddata.com/developers/cloud-native/doc/2.1/model-data/)
-- [Metrics](https://www.gooddata.com/developers/cloud-native/doc/2.1/create-metrics/)
-- [Insights(Visualizations)](https://www.gooddata.com/developers/cloud-native/doc/2.1/create-visualizations/)
-- [Dashboards](https://www.gooddata.com/developers/cloud-native/doc/2.1/create-dashboards/)
+- [Model Data](https://www.gooddata.com/developers/cloud-native/doc/2.2/model-data/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [Metrics](https://www.gooddata.com/developers/cloud-native/doc/2.2/create-metrics/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [Insights(Visualizations)](https://www.gooddata.com/developers/cloud-native/doc/2.2/create-visualizations/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
+- [Dashboards](https://www.gooddata.com/developers/cloud-native/doc/2.2/create-dashboards/&utm_source=medium.com&utm_campaign=gooddata_maql_malloy&utm_content=autor_jacek)
 
 #### ENV variables
 
